@@ -1,0 +1,11 @@
+version: '3.2'
+services:
+  ssh_challenge_auth:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: lewinc/sshd_challenge_auth
+    hostname: sshd_challenge_auth
+    container_name: sshd_challenge_auth
+    ports:
+      - "2222:22"

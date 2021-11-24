@@ -2,7 +2,7 @@
 
 The suggested name was `expert-parakeet`. It's really not that interesting; but I built it because I raised this issue https://github.com/adaptris/interlok/issues/832 and it's easier to muck around with a docker image for building your test packs than anything else.
 
-Basically, the things you need to know are
+Basically, the things you need to know are if you want to modify `sshd_config`
 
 ## ChallengeResponseAuthentication
 

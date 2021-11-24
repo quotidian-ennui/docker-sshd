@@ -31,3 +31,6 @@ KerberosAuthentication no
 GSSAPIAuthentication no
 ```
 
+## PubkeyAuthentication
+
+PubkeyAuthentication is enabled by default, and if you put an `authorized_keys` file into the .ssh directory, it will get automatically added into the users _.ssh_ directory on startup.

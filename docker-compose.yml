@@ -7,5 +7,7 @@ services:
     image: lewinc/sshd_challenge_auth
     hostname: sshd_challenge_auth
     container_name: sshd_challenge_auth
+    volumes:
+      - ./.ssh:/home/ssh_resources
     ports:
       - "2222:22"

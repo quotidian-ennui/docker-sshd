@@ -3,3 +3,4 @@ id_rsa
 id_rsa.pub
 .envrc
 **/ssh.init.d/*.sh
+known_hosts

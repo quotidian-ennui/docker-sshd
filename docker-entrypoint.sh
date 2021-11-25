@@ -32,5 +32,4 @@ function _reset_password()
 
 docker_process_init_files /ssh.init.d/*
 _reset_password
-/usr/bin/ssh-keygen -A
 exec /usr/sbin/sshd -D

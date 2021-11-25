@@ -1,0 +1,4 @@
+Include some *.sh files here, to auto-bootstrap your environment.
+No guarantees what order they'll run in, it might well be alphabetic
+
+

@@ -1,2 +1,5 @@
 LICENSE
 README.md
+ssh.init.d
+**/id_rsa
+**/id_rsa.pub

@@ -7,7 +7,11 @@ services:
     image: lewinc/sshd_challenge_auth
     hostname: sshd_challenge_auth
     container_name: sshd_challenge_auth
+    # Use direnv to add these as environment vars as required.
+    environment:
+      - SSH_USERNAME=$SSH_USERNAME
+      - SSH_PASSWORD=$SSH_PASSWORD
     volumes:
-      - ./.ssh:/home/ssh_resources
+      - ./ssh.init.d:/ssh.init.d
     ports:
       - "2222:22"

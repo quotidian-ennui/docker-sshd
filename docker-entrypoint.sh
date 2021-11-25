@@ -1,24 +1,36 @@
-#!/usr/local/bin/dumb-init /bin/sh
+#!/usr/local/bin/dumb-init /bin/bash
 
-USERNAME=user
+set -eo pipefail
+shopt -s nullglob
 
-function _init_users()
+USERNAME=${SSH_USERNAME:="user"}
+SSH_USERPASS=${SSH_PASSWORD:="$(head -c 10 /dev/urandom | sha256sum | cut -c1-10)"}
+
+function docker_process_init_files() {
+	local f
+	for f; do
+		case "$f" in
+			*.sh)
+				if [ -x "$f" ]; then
+					echo "$0: running $f"
+					"$f"
+				else
+					echo "$0: sourcing $f"
+					. "$f"
+				fi
+				;;
+			*) ;;
+		esac
+	done
+}
+
+function _reset_password()
 {
-  useradd "$USERNAME"
-  SSH_USERPASS=$(head -c 10 /dev/urandom | sha256sum | cut -c1-10)
   echo "$USERNAME:$SSH_USERPASS" | chpasswd
-  echo ssh $USERNAME password: $SSH_USERPASS
+  echo "password reset for [$USERNAME] [password: $SSH_USERPASS]"
 }
 
-function _init_user_ssh() {
-  mkdir -p /home/$USERNAME/.ssh
-  cp /home/ssh_resources/authorized_keys /home/$USERNAME/.ssh/authorized_keys
-  chown -R $USERNAME.$USERNAME /home/$USERNAME/.ssh
-  chmod -R go-rwx /home/$USERNAME/.ssh
-}
-
-
-_init_users
-_init_user_ssh
+docker_process_init_files /ssh.init.d/*
+_reset_password
 /usr/bin/ssh-keygen -A
 exec /usr/sbin/sshd -D

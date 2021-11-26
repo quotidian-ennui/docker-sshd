@@ -23,7 +23,7 @@ RUN \
   useradd ${SSH_USERNAME} && \
   mkdir -p /home/${SSH_USERNAME}/.ssh && \
   if [ -e /tmp/.ssh/authorized_keys ]; then cp /tmp/.ssh/authorized_keys /home/${SSH_USERNAME}/.ssh/authorized_keys; fi && \
-  chown -R ${SSH_USERNAME}.${SSH_USER} /home/${SSH_USERNAME}/.ssh && \
+  chown -R ${SSH_USERNAME}.${SSH_USERNAME} /home/${SSH_USERNAME}/.ssh && \
   rm -rf /tmp/.ssh && \
   chmod -R go-rwx /home/${SSH_USERNAME}/.ssh
 
